@@ -65,19 +65,17 @@ const autoCompleteText = asyncHandler(async (req, res) => {
       });
     }
 
-    // Build a precise prompt for completion
-    const prompt = `Complete the following sentence naturally and concisely. 
+    // Build a simple prompt for completion
+    const prompt = `Look into this incomplete text and complete it into a meaningful one. Keep the current word and add to it.
+
+    Current text: "${fullParagraph}"
     
-    IMPORTANT RULES:
-    1. DO NOT repeat any part of the existing text
-    2. ONLY generate new text that comes after the existing text
-    3. Keep it brief (5-10 words maximum)
-    4. Do not use phrases like "May I" or "Can I" at the beginning
-    5. Make it sound natural and conversational
+    Rules:
+    1. Keep the existing words exactly as they are
+    2. Add words to complete the sentence naturally
+    3. Make it grammatically correct
     
-    Existing text: "${fullParagraph}"
-    
-    Complete the sentence naturally without repeating anything:`;
+    Return ONLY the completed sentence, no explanations.`;
     
     console.log('Sending focused prompt to Gemini:', prompt);
     
